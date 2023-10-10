@@ -1,25 +1,46 @@
-import './App.css'
+import {useState} from "react";
+import './App.css';
 import PokemonCard from './components/PokemonCard';
 
 const pokemonList = [
   {
-      name: "Bulbizard",
-      imgSrc: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
-  },
-  {
-      name: "Mew",
-  },
-];
+      name: "bulbasaur",
+      imgSrc:
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png",
+    },
+    {
+      name: "charmander",
+      imgSrc:
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/4.png",
+    },
+    {
+      name: "squirtle",
+      imgSrc:
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/7.png",
+    },
+    {
+      name: "pikachu",
+      imgSrc:
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/25.png",
+    },
+    {
+      name: "mew",
+    },
+  ];
 
 
 
 function App() {
 
-  let pokemon = pokemonList[0];
+  const [pokemonIndex, setPokemonIndex] = useState(0);
+
+  let pokemon = pokemonList[pokemonIndex];
 
   return (
       <div>
         <PokemonCard name = {pokemon.name} imgSrc = {pokemon.imgSrc}/>
+        {pokemonList[pokemonIndex-1] ? <button onClick={()=>{setPokemonIndex(pokemonIndex - 1)}}>Précédent</button> : null}
+        {pokemonIndex < pokemonList.length - 1 ? <button onClick={()=>{setPokemonIndex(pokemonIndex + 1)}}>Suivant</button> : null}
       </div>
   );
 }
