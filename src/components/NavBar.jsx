@@ -1,9 +1,14 @@
-export default function NavBar({precedent, suivant, setPokemonIndex, pokemonIndex}) {
+export default function NavBar({pokemonList, setPokemonIndex}) {
 
     return(
         <>
-            {precedent ? <button onClick={()=>{setPokemonIndex(pokemonIndex - 1)}}>Précédent</button> : null}
-            {suivant ? <button onClick={()=>{setPokemonIndex(pokemonIndex + 1)}}>Suivant</button> : null}
+            <ul>
+                {pokemonList.map((pokemon, index)=> (
+                    <li key={pokemon.name}>
+                        <button onClick={()=>setPokemonIndex(index)}>{pokemon.name}</button>
+                    </li>
+                ))}
+            </ul>
         </>
     )
 
